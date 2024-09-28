@@ -40,6 +40,10 @@ const Navbar = () => {
                         title: "Category",
                         path: '/category',
                 },
+                {
+                        title: "Post",
+                        path: '/posts',
+                },
         ]
 
         if(pathName.includes('dashboard')){
