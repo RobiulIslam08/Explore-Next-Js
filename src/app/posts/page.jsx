@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 
@@ -18,6 +19,7 @@ const PostPage = async () => {
 				<div key={post.id} className=' border border-r-red-500 p-5'>
 					<p>title: {post.title}</p>
 					<p>body: {post.body}</p>
+					<button className='px-3 py-1 bg-green-800 text-semibold '><Link href={`/posts/${post?.id}`}>Veiw Details</Link></button>
 				</div>)
 			}
 			</div>

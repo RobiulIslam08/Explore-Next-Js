@@ -56,7 +56,7 @@ const Navbar = () => {
                                 <h1 className='font-bold text-orange-300 text-2xl'>Next Hero</h1>
                                 <ul className='flex gap-5 '>
                                         {links.map((link) =>
-                                                <li key={link.title}><Link className={`${pathName === link?.path && "text-lime-500"}  `} href={link?.path}>{link.title}</Link></li>
+                                                <li key={link.title}><Link className={`${pathName === link?.path && "text-orange-400 font-bold"}  `} href={link?.path}>{link.title}</Link></li>
                                         )}
                                 </ul>
                                 <button onClick={handler} className='px-4 py-1 bg-[#9943d3] rounded-sm'>Login </button>
