@@ -1,10 +1,9 @@
 import React from 'react';
 
 const page = () => {
-	
 	return (
 		<div>
-			Contact page
+			category details
 		</div>
 	);
 };

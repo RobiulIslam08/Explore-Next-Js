@@ -4,7 +4,7 @@ const page = () => {
 	
 	return (
 		<div>
-			Contact page
+			category page
 		</div>
 	);
 };

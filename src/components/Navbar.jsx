@@ -32,20 +32,36 @@ const Navbar = () => {
                         title: "Blog",
                         path: '/blog',
                 },
+                {
+                        title: "Dashboard",
+                        path: '/dashboard',
+                },
+                {
+                        title: "Category",
+                        path: '/category',
+                },
         ]
-        return (
-                <nav className="flex justify-between py-4 px-4 text-white bg-gray-500">
-                        <h1 className='font-bold text-orange-300 text-2xl'>Next Hero</h1>
-                        <ul className='flex gap-5 '>
-                                {links.map((link) =>
-                                        <li key={link.title}><Link className={`${pathName === link?.path && "text-lime-500"}  `} href={link?.path}>{link.title}</Link></li>
-                                )}
-                        </ul>
-                        <button onClick={handler} className='px-4 py-1 bg-[#9943d3] rounded-sm'>Login </button>
 
-                </nav>
-
-        );
+        if(pathName.includes('dashboard')){
+                return <div className='p-10'>
+                        dashboard Layout
+                </div>
+        }else{
+                return (
+                        <nav className="flex justify-between py-4 px-4 text-white bg-gray-500">
+                                <h1 className='font-bold text-orange-300 text-2xl'>Next Hero</h1>
+                                <ul className='flex gap-5 '>
+                                        {links.map((link) =>
+                                                <li key={link.title}><Link className={`${pathName === link?.path && "text-lime-500"}  `} href={link?.path}>{link.title}</Link></li>
+                                        )}
+                                </ul>
+                                <button onClick={handler} className='px-4 py-1 bg-[#9943d3] rounded-sm'>Login </button>
+        
+                        </nav>
+        
+                );
+        }
+      
 };
 
 export default Navbar;
