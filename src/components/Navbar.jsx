@@ -44,6 +44,10 @@ const Navbar = () => {
                         title: "Post",
                         path: '/posts',
                 },
+                {
+                        title: "Meals",
+                        path: '/meals',
+                },
         ]
 
         if(pathName.includes('dashboard')){

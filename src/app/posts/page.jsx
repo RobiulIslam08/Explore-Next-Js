@@ -9,7 +9,7 @@ const getPost = async() => {
 }
 const PostPage = async () => {
 	const posts =await getPost()
-	console.log(posts)
+
 	return (
 		<div className='my-10 '>
 			<h1 className='my-8 text-3xl font-bold text-center '>All Post</h1>

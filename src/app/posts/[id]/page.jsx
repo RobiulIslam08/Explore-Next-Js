@@ -6,7 +6,7 @@ const postDetails = async(id) => {
 	return data
 }
 const page =async ({params}) => {
-	console.log(params)
+
 	const {title, body} = await postDetails(params.id)
 
 	return (
