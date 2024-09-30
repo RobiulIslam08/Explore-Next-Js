@@ -1,4 +1,5 @@
 "use client"
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
 const Meals = () => {
@@ -24,6 +25,7 @@ const Meals = () => {
 		if (search) {
 			loadData();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [search]);
 	console.log(meals)
 	return (
@@ -33,9 +35,13 @@ const Meals = () => {
 				<button onClick={loadData} className='py-2 bg-[#45c7ab] text-black px-3'>Search</button>
 				
 				{/* Render meals or error message */}
-				<div>
+				<div className='grid grid-cols-4 gap-4 p-10 m-2'>
 					{meals.length > 0 && !error && meals.map((meal) => (
-						<p key={meal.idMeal}>{meal?.strMeal}</p>  // Use parentheses for implicit return
+						<div key={meal.idMeal} className=' border-lime-400 border'>
+							 <Image  src={meal.strMealThumb} alt={meal.strMealThumb} width={500} height={500}/>
+							<p >{meal?.strMeal}</p>
+							<p >{meal?.strInstructions}</p>
+						</div> 
 					))}
 
 					{error && (

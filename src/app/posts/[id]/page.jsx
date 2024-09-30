@@ -5,6 +5,16 @@ const postDetails = async(id) => {
 	const data = await response.json()
 	return data
 }
+
+// generate metadata with fetched data
+export const generateMetadata = async ({ params }) => {
+	const { title, body } = await postDetails(params.id); // Fetching post details for the metadata
+	return {
+	  title: `Post details - ${title}`, // Using the fetched post title
+	  description:  `${body}`
+
+		};
+  }
 const page =async ({params}) => {
 
 	const {title, body} = await postDetails(params.id)
