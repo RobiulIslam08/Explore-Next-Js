@@ -1,5 +1,6 @@
 "use client"
 import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -72,6 +73,11 @@ const Navbar = () => {
                                                 <button onClick={handler} className='px-4 py-1 bg-[#9943d3] rounded-sm'>Login </button>
                                                 : <button>logout</button>
                                 }
+                                <div>
+                                        <h1>{session?.data?.user?.name}</h1>
+                                        <h1>{session?.data?.user?.type}</h1>
+                                        <Image src={session?.data?.user?.image} width={50} height={50} alt={session?.data?.user?.name}/>
+                                </div>
 
                         </nav>
 

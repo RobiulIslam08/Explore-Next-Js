@@ -5,8 +5,10 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions = {
 	secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
+	
 	session: {
 	  strategy: 'jwt',
+	  maxAge: 30 * 24 * 60 * 60,
 	},
 	providers: [
 	  CredentialsProvider({
@@ -30,12 +32,27 @@ export const authOptions = {
 			  }
 		  }
 		  return null
-	  
-  
+	
 		 
 		},
 	  }),
 	],
+	callbacks:{
+
+		async jwt({ token, account, user }) {
+			// Persist the OAuth access_token and or the user id to the token right after signin
+			if (account) {
+			  token.type = user.type // এইখানে ডিফাইন করে দিলাম যে type টা হবে user.type ।  এই  user টা currrent user থেকে পাবে
+			 
+			}
+			return token
+		  },
+		async session({ session, token }) {
+			session.user.type = token.type  // এখানে sesison এর user.type  হবে token এ যে type টা সেট করে দিলাম সেটা। এই user টা session এর user
+			return session
+		  },
+		  
+	}
   }
 const handler = NextAuth(authOptions);
 
@@ -44,19 +61,25 @@ const users = [
 		id: 1,
 		name: 'robiul',
 		email: 'robiul@gmail.com',
-		password: 'password'
+		password: 'password',
+		type:'admin',
+		image: 'https://picsum.photos/200/300'
 	},
 	{	
 		id: 2,
 		name: 'rahad',
 		email: 'rahad@gmail.com',
-		password: 'password'
+		password: 'password',
+		type: 'modarator',
+		image: 'https://picsum.photos/200/300'
 	},
 	{	
 		id: 3,
 		name: 'arif',
 		email: 'arif@gmail.com',
-		password: 'password'
+		password: 'password',
+		type: 'user',
+		image: 'https://picsum.photos/200/300'
 	},
 ]
 export { handler as GET, handler as POST };

@@ -4,9 +4,9 @@ const nextConfig = {
 		remotePatterns: [
 		  {
 			protocol: 'https',
-			hostname: 'www.themealdb.com',
+			hostname: '*',
 			port: '', // Leave it empty if no specific port is used
-			pathname: '/images/media/**', // Allow all images under this path
+			pathname: '/**', // Allow all images under this path
 		  },
 		],
 	  },
