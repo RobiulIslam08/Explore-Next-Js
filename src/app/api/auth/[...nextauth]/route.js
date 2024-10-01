@@ -2,39 +2,42 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-const handler = NextAuth({
-  session: {
-    strategy: 'jwt',
-  },
-  providers: [
-    CredentialsProvider({
-      name: 'Credentials',
-      credentials: {
-        email: { label: "Email", type: "text", placeholder: "your email", required: true },
-        password: { label: "Password", type: "password", placeholder: "your password", required: true },
-      },
-      async authorize(credentials) {
-		const {email, password} = credentials;
-        if (!credentials) {
-          return null;
-        }
-		if(email){
-			const currentUser = users.find(user => user.email === email)
-			console.log('currnet user', currentUser)
-			if(currentUser){
-				if(currentUser.password === password){
-					return currentUser
-				}
-			}
-		}
-		return null
-	
 
-       
-      },
-    }),
-  ],
-});
+export const authOptions = {
+	secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
+	session: {
+	  strategy: 'jwt',
+	},
+	providers: [
+	  CredentialsProvider({
+		name: 'Credentials',
+		credentials: {
+		  email: { label: "Email", type: "text", placeholder: "your email", required: true },
+		  password: { label: "Password", type: "password", placeholder: "your password", required: true },
+		},
+		async authorize(credentials) {
+		  const {email, password} = credentials;
+		  if (!credentials) {
+			return null;
+		  }
+		  if(email){
+			  const currentUser = users.find(user => user.email === email)
+			  console.log('currnet user', currentUser)
+			  if(currentUser){
+				  if(currentUser.password === password){
+					  return currentUser
+				  }
+			  }
+		  }
+		  return null
+	  
+  
+		 
+		},
+	  }),
+	],
+  }
+const handler = NextAuth(authOptions);
 
 const users = [
 	{	
