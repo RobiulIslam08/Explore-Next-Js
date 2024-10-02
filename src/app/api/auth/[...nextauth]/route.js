@@ -51,6 +51,21 @@ export const authOptions = {
 			session.user.type = token.type  // এখানে sesison এর user.type  হবে token এ যে type টা সেট করে দিলাম সেটা। এই user টা session এর user
 			return session
 		  },
+
+// for sign in protected route then >
+		  async redirect({ url, baseUrl }) {
+			// সাইন ইন করার পর যেখানে যেতে চেয়েছিল, সেখানে রিডিরেক্ট করুন
+			// যদি url baseUrl এর মধ্যে থাকে, সেটি ব্যবহার করুন
+			if (url.startsWith(baseUrl)) {
+			  return url;
+			}
+			// যদি আগে থেকে কোনো specific রুটে যাওয়ার চেষ্টা করা হয়
+			if (url) {
+			  return url;
+			}
+			// অন্যথায় ডিফল্ট রুটে পাঠান, যেমন ড্যাশবোর্ড
+			return `${baseUrl}/dashboard`;
+		  }
 		  
 	}
   }
